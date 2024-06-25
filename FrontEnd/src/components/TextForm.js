@@ -34,11 +34,10 @@ export default function TextForm(props) {
     setText(event.target.value);
   }
 
-  const handleDataBase = (e) => {
-    setText(e.target.value);
+  const handleDataBase = async () => {
     
     try{
-      const response = fetch('http://localhost:5000/api/save/', {
+      const response = await fetch('http://localhost:5000/api/save/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,9 +64,9 @@ export default function TextForm(props) {
         <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleClearClick}>Clear Text</button>
         <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSpeakClick}>Speak</button>
         <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleCopy}>Copy Text</button>
-        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value={text} onChange={handleOnChange}>Remove Extra Spaces</button>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value={text} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
 
-        <button className="btn btn-primary mx-1 my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleDataBase}>Add To DataBase</button>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleDataBase}>Add To DataBase</button>
       </div>
       <div className="container mx-auto my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
         <h2 className="text-2xl">Your text summary</h2>

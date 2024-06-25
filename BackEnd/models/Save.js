@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const SaveSchema = new mongoose.Schema({
 
-    message: {
+    text: {
         type: String,
         required: true
     },

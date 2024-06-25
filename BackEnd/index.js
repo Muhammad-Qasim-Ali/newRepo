@@ -9,9 +9,11 @@ env.config();
 
 const corsAllow = {
   origin: 'http://localhost:3000',
+  methods: 'POST',
   credentials: true,
   optionsSuccessStatus: 200
 }
+app.use(cors(corsAllow));
 
 mongoose.connect(process.env.MONGO_URI, {
 }).then(() => {
@@ -20,7 +22,6 @@ mongoose.connect(process.env.MONGO_URI, {
   console.log('Failed to connect to MongoDB', err);
 });
 
-app.use(cors(corsAllow));
 
 app.use(express.json());
 app.use("/api/save", saveRoute);
